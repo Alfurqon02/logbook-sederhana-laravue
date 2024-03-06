@@ -5,6 +5,7 @@ namespace App\Http\Controllers;
 use App\Models\Logbook;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Validator;
+use Illuminate\Support\Facades\Auth;
 use Inertia\Inertia;
 use DateTime;
 
@@ -47,11 +48,13 @@ class LogbookController extends Controller
         // Format the date
         $formattedDate = $date->format('Y-m-d');
         // dd($formattedDate);
+        $user_id = Auth::user()->id;
 
         Logbook::create([
             'name' => $request->name,
             'description' => $request->description,
             'date' => $formattedDate,
+            'user_id' => $user_id,
         ]);
 
         return redirect()->route('logbooks.index')->with('success', 'Logbook Created Success');
@@ -104,7 +107,7 @@ class LogbookController extends Controller
      */
     public function destroy($id)
     {
-        
+
         Logbook::find($id)->delete();
         return redirect()->route('logbooks.index')->with('success', 'Logbook Deleted Successfully');
     }

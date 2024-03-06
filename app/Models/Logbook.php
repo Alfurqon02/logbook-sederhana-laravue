@@ -13,5 +13,6 @@ class Logbook extends Model
         'name',
         'description',
         'date',
+        'user_id',
     ];
 }
