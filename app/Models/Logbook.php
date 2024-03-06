@@ -15,4 +15,8 @@ class Logbook extends Model
         'date',
         'user_id',
     ];
+
+    public function users(){
+        return $this->hasOne(User::class);
+    }
 }
