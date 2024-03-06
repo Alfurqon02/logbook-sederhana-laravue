@@ -17,7 +17,7 @@ class LogbookController extends Controller
     public function index()
     {
         return Inertia::render('Logbook/Index', [
-            'logbooks' => Logbook::all(),
+            'logbooks' => Logbook::where('user_id', Auth::user()->id),
         ]);
     }
 
